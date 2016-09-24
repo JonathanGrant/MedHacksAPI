@@ -342,9 +342,27 @@ app.post('/handlecall', function(req, res) {
   res.send(o2x({
     '?xml version="1.0" encoding="utf-8"?' : null,
     Response: {
-      "Say voice=\"alice\"": "Trip balls bitch! ooooohhh ya ya."
+      "Say voice=\"alice\"": "Hello, and welcome to our service. I am Rex, your online virtual assistant.",
+      "Gather timeout=\"10\"": {
+        "Say voice=\"alice\"": "Please press one to sign up for our text notification services, or zero to cancel, followed by the pound symbol."
+      },
+      "Say voice=\"alice\"": "Thank you! Have a wonderful day.",
+      "Redirect method=\"GET\"": "http://dontpanicyet.herokuapp.com/sendfirsttext"
     }
   }));
+})
+
+app.get('/sendfirsttext', function(req, res) {
+  twilio.sendMessage({
+    to: "+16507993840",
+    from: '+16503004250',
+    body: "Hey, this is Rex, destroyer of worlds. Thank you for signing up!",
+    }, function(err, responseData) { //this function is executed when a response is received from Twilio
+        if (!err) { // "err" is an error received during the request, if any
+            console.log(responseData.from); // outputs "+14506667788"
+            console.log(responseData.body); // outputs "word to your mother."
+        }
+    });
 })
 
 module.exports = app;
