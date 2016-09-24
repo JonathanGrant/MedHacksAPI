@@ -242,7 +242,7 @@ app.get('/twiml', function(req, res) {
           }
           var words = [myWords.slice(0, -1).join(', '), myWords.slice(-1)[0]].join(myWords.length < 2 ? '' : ' and ');
           request({
-            url: "https://mobilesvc.sickweather.com/ws/v1.1/getForecast.php?lat=" + loc[0] + "&lon=" + loc[1] + "&api_key=GX3RD5Xx3wJmBSitk9Ee",
+            url: "https://mobilesvc.sickweather.com/ws/v1.1/getSickScoreInRadius.php?lat=" + loc[0] + "&lon=" + loc[1] + "&api_key=GX3RD5Xx3wJmBSitk9Ee",
             method: "GET",
             json: true,
             headers: {},
