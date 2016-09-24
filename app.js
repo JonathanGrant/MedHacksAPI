@@ -334,6 +334,7 @@ app.get('/callme', function(req, res) {
   }, function(err, call) {
     console.log(err);
     process.stdout.write(call.sid);
+    res.sendfile(path.join(__dirname + '/public/close.html'));
   });
 })
 
