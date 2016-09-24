@@ -327,7 +327,7 @@ app.get('/twiml', function(req, res) {
 
 app.get('/callme', function(req, res) {
   twilio.calls.create({
-      url: "https://demo.twilio.com/docs/voice.xml",
+      url: "http://dontpanicyet.herokuapp.com/handlecall",
       to: "+16507993840",
       from: '+16503004250'
   }, function(err, call) {
@@ -341,7 +341,7 @@ app.get('/handlecall', function(req, res) {
   res.send(o2x({
     '?xml version="1.0" encoding="utf-8"?' : null,
     Response: {
-      Say: "Trip balls bitch! ooooohhh ya ya."
+      "Say voice=alice": "Trip balls bitch! ooooohhh ya ya."
     }
   }));
 })
