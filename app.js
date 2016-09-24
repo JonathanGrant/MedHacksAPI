@@ -4,11 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
 var app = express();
+var GooglePlaces = require('google-places');
+var places = new GooglePlaces('AIzaSyAP8KGW9N3KPxDiPhqPWC0WAC2-BUwK64M');
+var _ = require('underscore');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -58,6 +59,42 @@ app.use(function(err, req, res, next) {
 
 app.get('/index', function(req, res) {
     res.sendfile(path.join(__dirname + '/public/index.html'));
+});
+
+app.get('/hospitalnearme', function(req, res) {
+    places.search({
+      keyword: "hospital", 
+      location: [req.query.lat, req.query.lon],
+      radius: 49999,
+      opennow: true
+    }, function(err, response) {
+    if (err) {
+      console.error(err);
+      res.send(err);
+    } else {
+      if (response.results.length > 0) {
+        var thePlace = response.results[0];
+        places.details({reference: thePlace.reference}, function(err, response) {
+          if (err) {
+            console.error(err)
+            req.err = 500;
+            next();
+          } else {
+            req.place = {
+              name: response.result.name,
+              map: response.result.url
+            };
+            var hospital = _.pluck(response.result.address_components, 'long_name').join(", ");
+            res.send(hospital);
+          }
+        });
+      } else {
+        console.log("No hospitals found");
+        res.send("Nothing found");
+      }
+    }
+  });
+
 });
 
 module.exports = app;
