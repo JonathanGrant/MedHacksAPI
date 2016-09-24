@@ -226,7 +226,7 @@ app.get('/twiml', function(req, res) {
   console.log(req);
   var message = "Hey! I'm sorry but I did not understand that command. How may I help you?";
   switch(req.query.body) {
-    case 'How safe am I?':
+    case 'How+safe+am+I?':
       request({
         url: "https://mobilesvc.sickweather.com/ws/v1.1/getForecast.php?lat=" + loc[0] + "&lon=" + loc[1] + "&api_key=GX3RD5Xx3wJmBSitk9Ee",
         method: "GET",
