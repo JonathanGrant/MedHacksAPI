@@ -341,7 +341,7 @@ app.get('/handlecall', function(req, res) {
   res.send(o2x({
     '?xml version="1.0" encoding="utf-8"?' : null,
     Response: {
-      "Say voice=alice": "Trip balls bitch! ooooohhh ya ya."
+      "Say voice=\"alice\"": "Trip balls bitch! ooooohhh ya ya."
     }
   }));
 })
