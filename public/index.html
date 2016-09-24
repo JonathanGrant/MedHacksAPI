@@ -90,8 +90,8 @@ http://www.tooplate.com/view/2078-adventure
                 
 				<li><a href="#work" class="smoothScroll">WHAT WE DO</a></li>
 				<li><a href="#about" class="smoothScroll">MAPS</a></li>
-				<li><a href="#team" class="smoothScroll">TEAM</a></li>
 				<li><a href="#portfolio" class="smoothScroll">NEWS</a></li>
+				<li><a href="#team" class="smoothScroll">TEAM</a></li>
 				<li><a href="#plan" class="smoothScroll">PLANS</a></li>
 				<li><a href="#contact" class="smoothScroll">CONTACT</a></li>
 			</ul>
@@ -263,120 +263,11 @@ http://www.tooplate.com/view/2078-adventure
 				<div class="section-title">
 					<h1 class="heading color-white">MAPS</h1>
 					<hr>
-					<div id='DontPanic'></div>
+					
+					<img src="images/map.jpg"/>
 				</div>
 			</div>
-
-				<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBsr2Qara311rBhyfKvtT3TSvjycPMPVIw&sensor=false&extension=.js'></script> 
-				 
-				<script> 
-				    google.maps.event.addDomListener(window, 'load', init);
-				    var map;
-				    function init() {
-				        var mapOptions = {
-				            center: new google.maps.LatLng(39.291571, -76.613619),
-				            zoom: 12,
-				            zoomControl: true,
-				            zoomControlOptions: {
-				                style: google.maps.ZoomControlStyle.DEFAULT,
-				            },
-				            disableDoubleClickZoom: true,
-				            mapTypeControl: true,
-				            mapTypeControlOptions: {
-				                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-				            },
-				            scaleControl: true,
-				            scrollwheel: false,
-				            panControl: true,
-				            streetViewControl: true,
-				            draggable : true,
-				            overviewMapControl: true,
-				            overviewMapControlOptions: {
-				                opened: false,
-				            },
-				            mapTypeId: google.maps.MapTypeId.TERRAIN,
-				            styles: [
-				  {
-				    featureType: "road",
-				    elementType: "geometry",
-				    stylers: [
-				      { lightness: 100 },
-				      { visibility: "simplified" }
-				    ]
-				  },{
-				   "featureType": "water",
-				        "elementType": "geometry",
-				        "stylers": [
-				            {
-				                "visibility": "on"
-				            },
-				            {
-				                "color": "#C6E2FF",
-				            }
-				        ]
-				    }, {
-				        "featureType": "poi",
-				        "elementType": "geometry.fill",
-				        "stylers": [
-				            {
-				                "color": "#C5E3BF"
-				            }
-				        ]
-				    },{
-				        "featureType": "road",
-				        "elementType": "geometry.fill",
-				        "stylers": [
-				            {
-				                "color": "#D1D1B8"
-				            }
-				        ]
-				    }
-				],
-				        }
-				        var mapElement = document.getElementById('DontPanic');
-				        var map = new google.maps.Map(mapElement, mapOptions);
-				        var locations = [
-
-				        ];
-				        for (i = 0; i < locations.length; i++) {
-							if (locations[i][1] =='undefined'){ description ='';} else { description = locations[i][1];}
-							if (locations[i][2] =='undefined'){ telephone ='';} else { telephone = locations[i][2];}
-							if (locations[i][3] =='undefined'){ email ='';} else { email = locations[i][3];}
-				           if (locations[i][4] =='undefined'){ web ='';} else { web = locations[i][4];}
-				           if (locations[i][7] =='undefined'){ markericon ='';} else { markericon = locations[i][7];}
-				            marker = new google.maps.Marker({
-				                icon: markericon,
-				                position: new google.maps.LatLng(locations[i][5], locations[i][6]),
-				                map: map,
-				                title: locations[i][0],
-				                desc: description,
-				                tel: telephone,
-				                email: email,
-				                web: web
-				            });
-				link = '';     }
-
-				}
-				</script>
-				<style>
-				    #DontPanic {
-				        height:500px;
-				        width:700px;
-				        border: 4px solid #000;
-					    position: relative;
-					    text-align: center;
-				    }
-				    .gm-style-iw * {
-				        display: block;
-				        width: 100%;
-				    }
-				    .gm-style-iw h4, .gm-style-iw p {
-				        margin: 0;
-				    }
-				    .gm-style-iw a {
-				        color: #4272db;
-				    }
-				</style>
+			
 		</div>
 	</div>
 </section>
@@ -518,7 +409,7 @@ http://www.tooplate.com/view/2078-adventure
 			<div class="col-md-6 col-sm-12">
 				<h3 class="color-white">OUR STORY</h3>
 				<h2>Regional Epidemiology System</h2>
-				<p class="color-white">A dynamic team formed during JHU's MEDHACKS 2016, we are passionate about creating a global solution to one of the world's most pressing healthcare problems: Epidemics.</p>
+				<p class="color-white">A dynamic team formed during JHU's MedHacks 2016, we are passionate about creating a global solution to one of the world's most pressing healthcare problems: Epidemics.</p>
 				<p class="color-white">Second paragraph here. Second paragraph here. Second paragraph here. Second paragraph here. Second paragraph here.</p>
 			</div>
 
@@ -615,7 +506,7 @@ http://www.tooplate.com/view/2078-adventure
 
 			<!-- Section title
 			================================================== -->
-			<div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+			<div class="col-md-offset-1 col-md-10 col-sm-offset-2 col-sm-8">
 				<div class="section-title">
 					<h5 class="wow bounceIn">WE ARE READY</h5>
 					<h1 class="heading">OUR TEAM</h1>
@@ -625,18 +516,16 @@ http://www.tooplate.com/view/2078-adventure
 			</div>
 		</div>
 		<div class="row">
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 			<div class="col-sm-2 wow fadeInUp" data-wow-delay="0.3s">
 				<div class="team-wrapper">
 					<img src="images/team/Anna.jpg" class="img-responsive" alt="team img">
 						<div class="team-des">
 							<h4>Anna Maria Hartner</h4>
 							<h3>Visionary</h3>
-							<ul class="social-icon">
-								<li><a href="#" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>
-								<li><a href="#" class="fa fa-twitter wow fadeIn" data-wow-delay="0.6s"></a></li>
-								<li><a href="#" class="fa fa-dribbble wow fadeIn" data-wow-delay="0.6s"></a></li>
-								<li><a href="#" class="fa fa-behance wow fadeIn" data-wow-delay="0.6"></a></li>
-							</ul>
 						</div>
 				</div>
 			</div>
@@ -647,12 +536,6 @@ http://www.tooplate.com/view/2078-adventure
 						<div class="team-des">
 							<h4>Jonathan Grant</h4>
 							<h3>Jedi Master</h3>
-							<ul class="social-icon">
-								<li><a target="_blank" href="https://www.facebook.com/HackLifePrius" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>
-								<li><a target="_blank" href="https://www.twitter.com/DerJAG" class="fa fa-twitter wow fadeIn" data-wow-delay="0.6s"></a></li>
-								<li><a target="_blank" href="https://www.youtube.com/watch?v=ZunFP46mRBk" class="fa fa-dribbble wow fadeIn" data-wow-delay="0.6s"></a></li>
-								<li><a target="_blank" href="https://www.snapchat.com/add/JonnyTheGee" class="fa fa-snapchat-ghost wow fadeIn" data-wow-delay="0.6"></a></li>
-							</ul>
 						</div>
 				</div>
 			</div>
@@ -663,12 +546,6 @@ http://www.tooplate.com/view/2078-adventure
 						<div class="team-des">
 							<h4>Hoang Nguyen</h4>
 							<h3>Developer</h3>
-							<ul class="social-icon">
-								<li><a href="#" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>
-								<li><a href="#" class="fa fa-twitter wow fadeIn" data-wow-delay="0.6s"></a></li>
-								<li><a href="#" class="fa fa-dribbble wow fadeIn" data-wow-delay="0.6s"></a></li>
-								<li><a href="#" class="fa fa-behance wow fadeIn" data-wow-delay="0.6"></a></li>
-							</ul>
 						</div>
 				</div>
 			</div>
@@ -679,12 +556,6 @@ http://www.tooplate.com/view/2078-adventure
 						<div class="team-des">
 							<h4>Janak Jobanputra</h4>
 							<h3>Developer</h3>
-							<ul class="social-icon">
-								<li><a href="https://www.facebook.com/janakjobanputra" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>
-								<li><a href="https://www.instagram.com/janakjobanputra" class="fa fa-instagram wow fadeIn" data-wow-delay="0.6s"></a></li>
-								<li><a href="https://www.snapchat.com/add/janakjobanputra" class="fa fa-snapchat-ghost wow fadeIn" data-wow-delay="0.6s"></a></li>
-								<li><a href="https://www.youtube.com/user/janakusa" class="fa fa-youtube wow fadeIn" data-wow-delay="0.6"></a></li>
-							</ul>
 						</div>
 				</div>
 			</div>
@@ -695,12 +566,6 @@ http://www.tooplate.com/view/2078-adventure
 						<div class="team-des">
 							<h4>Karla Miletti</h4>
 							<h3>Developer</h3>
-							<ul class="social-icon">
-								<li><a href="#" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>
-								<li><a href="#" class="fa fa-twitter wow fadeIn" data-wow-delay="0.6s"></a></li>
-								<li><a href="#" class="fa fa-dribbble wow fadeIn" data-wow-delay="0.6s"></a></li>
-								<li><a href="#" class="fa fa-behance wow fadeIn" data-wow-delay="0.6"></a></li>
-							</ul>
 						</div>
 				</div>
 			</div>
@@ -711,15 +576,82 @@ http://www.tooplate.com/view/2078-adventure
 						<div class="team-des">
 							<h4>Regan Stradtmann-Carvalho</h4>
 							<h3>Unpaid Intern</h3>
-							<ul class="social-icon">
-								<li><a href="#" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>
-								<li><a href="#" class="fa fa-twitter wow fadeIn" data-wow-delay="0.6s"></a></li>
-								<li><a href="#" class="fa fa-dribbble wow fadeIn" data-wow-delay="0.6s"></a></li>
-								<li><a href="#" class="fa fa-behance wow fadeIn" data-wow-delay="0.6"></a></li>
-							</ul>
 						</div>
 				</div>
 			</div>
+		</div>
+	</div>
+</section>
+
+
+<!-- Plan section
+================================================== -->
+<section id="plan" class="parallax-section">
+	<div class="container">
+		<div class="row">
+
+			<!-- Section title
+			================================================== -->
+			<div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 wow fadeInUp">
+				<div class="section-title">
+					<h5 class="wow bounceIn">YOU AND HEALTHCARE</h5>
+					<h1 class="heading color-white">GET INVOLVED</h1>
+					<hr>
+					<p class="color-white">From text alerts, awareness information, and self-reporting, you can make a difference in healthcare.</p>
+				</div>
+			</div>
+
+			<div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+				<div class="plan">
+					<h2 class="plan-title">Text Alerts</h2>
+					<div class="plan-price">
+						<h1 class="plan-price-title">Immediate Alerts Straight to You</h1>
+					</div>
+					<ul class="plan-list">
+						<li>24/7 updates from clinics and hospitals</li>
+						<li>Information about local events</li>
+						<li>Integration through zip code for relevance</li>
+					</ul>
+					<div class="plan-button">
+						<button class="btn btn-default">SIGN UP</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+				<div class="plan">
+					<h2 class="plan-title">Awareness</h2>
+					<div class="plan-price">
+						<h1 class="plan-price-title">Information on epidemics and clinics</h1>
+					</div>
+					<ul class="plan-list">
+						<li>Epidemic prevention</li>
+						<li>Local, personalized information</li>
+						<li>Your community, first</li>
+					</ul>
+					<div class="plan-button">
+						<button class="btn btn-default">MORE INFORMATION</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
+				<div class="plan">
+					<h2 class="plan-title">Reports</h2>
+					<div class="plan-price">
+						<h1 class="plan-price-title">Update healthcare providers on your community</h1>
+					</div>
+					<ul class="plan-list">
+						<li>Submit additional information</li>
+						<li>Track symptoms</li>
+						<li>Connect with providers</li>
+					</ul>
+					<div class="plan-button">
+						<button class="btn btn-default">SUBMIT REPORT</button>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </section>
@@ -789,7 +721,7 @@ http://www.tooplate.com/view/2078-adventure
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
 
-				<h2 class="wow bounceIn">RES</h2>
+				<h2 class="wow bounceIn">R.E.S.</h2>
 				<ul class="social-icon">
 					<li><a href="#" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>
 					<li><a href="#" class="fa fa-twitter wow fadeIn" data-wow-delay="0.6s"></a></li>
