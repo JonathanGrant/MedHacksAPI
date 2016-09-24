@@ -12,6 +12,7 @@ var places = new GooglePlaces('AIzaSyAP8KGW9N3KPxDiPhqPWC0WAC2-BUwK64M');
 var _ = require('underscore');
 var request = require("request");
 var twilio = require('twilio')('AC22b9e3d62610aaef92c4bdab5c7b811a', '251943b2b70688e5d59e8509f7427d78');
+var o2x = require('object-to-xml');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -221,7 +222,13 @@ app.get('/twilioredirect', function(req, res) {
 })
 
 app.get('/twiml', function(req, res) {
-  res.sendFile(path.join(__dirname + '/sms-twiml.php'));
+  res.set('Content-Type', 'text/xml');
+    res.send(o2x({
+        '?xml version="1.0" encoding="utf-8"?' : null,
+        Response: {
+            Sms: "Ola Jon"
+        }
+    }));
 })
 
 module.exports = app;

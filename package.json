@@ -13,6 +13,7 @@
     "google-places": "0.0.2",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
+    "object-to-xml": "^1.1.0",
     "request": "^2.75.0",
     "serve-favicon": "~2.3.0",
     "twilio": "^2.11.0",
