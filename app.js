@@ -215,4 +215,13 @@ app.get('/gethospitaltext', function(req, res) {
   });
 });
 
+app.get('/twilioredirect', function(req, res) {
+  console.log(req);
+  res.send(req);
+})
+
+app.get('/twilm', function(req, res) {
+  res.sendFile(path.join(__dirname + '/myTwimlResponse.xml'));
+})
+
 module.exports = app;
