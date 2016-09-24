@@ -325,4 +325,24 @@ app.get('/twiml', function(req, res) {
   }
 })
 
+app.get('/callme', function(req, res) {
+  twilio.calls.create({
+      url: "https://dontpanicyet.herokuapp.com/handlecall",
+      to: "+16507993840",
+      from: '+16503004250'
+  }, function(err, call) {
+      process.stdout.write(call.sid);
+  });
+})
+
+app.get('/handlecall', function(req, res) {
+  res.set('Content-Type', 'text/xml');
+  res.send(o2x({
+      '?xml version="1.0" encoding="utf-8"?' : null,
+      Response: {
+          Say: "I'm tripping on Acid right now bitch!"
+      }
+  }));
+})
+
 module.exports = app;
