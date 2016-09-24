@@ -12,6 +12,7 @@ var places = new GooglePlaces('AIzaSyAP8KGW9N3KPxDiPhqPWC0WAC2-BUwK64M');
 var _ = require('underscore');
 var request = require("request");
 var twilio = require('twilio')('AC22b9e3d62610aaef92c4bdab5c7b811a', '251943b2b70688e5d59e8509f7427d78');
+var os = require('os');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -165,6 +166,33 @@ app.get('/getinfotext', function(req, res) {
       console.log("response.statusCode: " + response.statusCode)
       console.log("response.statusText: " + response.statusText)
     }
+  });
+})
+
+app.get('/locme', function(req, res) {
+  var ifaces = os.networkInterfaces();
+  Object.keys(ifaces).forEach(function (ifname) {
+    var alias = 0;
+
+    ifaces[ifname].forEach(function (iface) {
+      if ('IPv4' !== iface.family || iface.internal !== false) {
+        // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+        return;
+      }
+      console.log(iface.address);
+      ++alias;
+      var myIpUrl = 'http://freegeoip.net/json/' + iface.address
+      request({
+        url: myIpUrl,
+        method: "GET",
+        json: true,
+        headers: {},
+        body: {}
+      }, function (error, response, body) {
+        console.log(body);
+        res.send(body);
+      });
+    });
   });
 })
 
