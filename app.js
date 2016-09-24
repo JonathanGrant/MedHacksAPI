@@ -308,7 +308,7 @@ app.get('/twiml', function(req, res) {
                 };
                 console.log(response);
                 var address = _.pluck(response.result.address_components, 'long_name').join(", ");
-                var message = "The nearest open hospital is " + response.result.name + " at " + address + ". Good luck! 🔥 Would you like us to schedule an appointment?";
+                var message = "The nearest open hospital is " + response.result.name + " at " + address + ". Good luck! 🔥 Would you like me to schedule an appointment?";
                 res.set('Content-Type', 'text/xml');
                 res.send(o2x({
                     '?xml version="1.0" encoding="utf-8"?' : null,
@@ -327,9 +327,9 @@ app.get('/twiml', function(req, res) {
 
 app.get('/callme', function(req, res) {
   twilio.calls.create({
-      url: "https://dontpanicyet.herokuapp.com/handlecall",
+      url: "https://demo.twilio.com/docs/voice.xml",
       to: "+16507993840",
-      from: '+16504222546'
+      from: '+16503004250'
   }, function(err, call) {
     console.log(err);
     process.stdout.write(call.sid);
