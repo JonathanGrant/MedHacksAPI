@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -11,7 +13,11 @@ var GooglePlaces = require('google-places');
 var places = new GooglePlaces('AIzaSyAP8KGW9N3KPxDiPhqPWC0WAC2-BUwK64M');
 var _ = require('underscore');
 var request = require("request");
-var twilio = require('twilio')('AC22b9e3d62610aaef92c4bdab5c7b811a', '251943b2b70688e5d59e8509f7427d78');
+var twilio = require('twilio')('ACe46b6eb54f5c097135e06297367c9847', '7da36c48cb55a3e1cda6c69db2498b8e');
+var os = require('os');
+var ifaces = os.networkInterfaces();
+var geoip = require('geoip-lite');
+var navigator = require('navigator');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -122,7 +128,7 @@ app.get('/sickweather', function(req, res) {
 app.get('/twiliotest', function(req, res) {
   twilio.sendMessage({
     to: "+16507993840",
-    from: '+16503004250',
+    from: '+16504222546',
     body: "Ola twilio!",
     }, function(err, responseData) { //this function is executed when a response is received from Twilio
         if (!err) { // "err" is an error received during the request, if any
@@ -146,11 +152,14 @@ app.get('/getinfotext', function(req, res) {
       for (i = 0; i < body.words.length; i++) {
         myWords.push(body.words[i].toUpperCase())
       }
-      var words = [myWords.slice(0, -1).join(', '), myWords.slice(-1)[0]].join(myWords.length < 2 ? '' : ' and ');
+      var words = [myWords.slice(0, -1).join(', '), myWords.slice(-1)[0]].join(myWords.length < 2 ? '' : ', and ');
       var message = "Thanks to Sick Weather, you have " + body.words.length + " warnings in your area. They are: " + words + ". Reply the name of the warning you are interested in to get more information dawg."
+      if (body.words.length <= 0) {
+        message = "There are no reported illnesses around you. It's chill dawg!"
+      }
       twilio.sendMessage({
         to: "+16507993840",
-        from: '+16503004250',
+        from: '+16504222546',
         body: message,
         }, function(err, responseData) { //this function is executed when a response is received from Twilio
             if (!err) { // "err" is an error received during the request, if any
@@ -166,6 +175,30 @@ app.get('/getinfotext', function(req, res) {
       console.log("response.statusText: " + response.statusText)
     }
   });
+})
+
+app.get('/testlocation', function(req, res) {
+  // Object.keys(ifaces).forEach(function (ifname) {
+  //   var alias = 0;
+
+  //   ifaces[ifname].forEach(function (iface) {
+  //     if ('IPv4' !== iface.family || iface.internal !== false) {
+  //       // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+  //       return;
+  //     }
+  //     console.log("Ip address is " + iface.address);
+  //     console.log(geoip.lookup(iface.address));
+  //     ++alias;
+  //     res.send(geoip.lookup(iface.address));
+  //   });
+  // });
+  var startPos;
+  var geoSuccess = function(position) {
+    startPos = position;
+    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+  };
+  navigator.geolocation.getCurrentPosition(geoSuccess);
 })
 
 module.exports = app;
