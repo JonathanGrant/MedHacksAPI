@@ -307,7 +307,7 @@ app.get('/twiml', function(req, res) {
                 };
                 console.log(response);
                 var address = _.pluck(response.result.address_components, 'long_name').join(", ");
-                var message = "The nearest open hospital is " + response.result.name + " at " + address + ". Good luck! 🔥";
+                var message = "The nearest open hospital is " + response.result.name + " at " + address + ". Good luck! 🔥 Would you like us to schedule an appointment?";
                 res.set('Content-Type', 'text/xml');
                 res.send(o2x({
                     '?xml version="1.0" encoding="utf-8"?' : null,
