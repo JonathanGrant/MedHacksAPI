@@ -168,4 +168,51 @@ app.get('/getinfotext', function(req, res) {
   });
 })
 
+app.get('/gethospitaltext', function(req, res) {
+  places.search({
+      keyword: "hospital", 
+      location: [req.query.lat, req.query.lon],
+      radius: 49999,
+      opennow: true
+    }, function(err, response) {
+    if (err) {
+      console.error(err);
+      res.send(err);
+    } else {
+      if (response.results.length > 0) {
+        var thePlace = response.results[0];
+        places.details({reference: thePlace.reference}, function(err, response) {
+          if (err) {
+            console.error(err)
+            req.err = 500;
+            next();
+          } else {
+            req.place = {
+              name: response.result.name,
+              map: response.result.url
+            };
+            console.log(response);
+            var address = _.pluck(response.result.address_components, 'long_name').join(", ");
+            var message = "The nearest open hospital is " + response.result.name + " at " + address + ". Good luck! 🔥";
+            twilio.sendMessage({
+              to: "+16507993840",
+              from: '+16503004250',
+              body: message,
+              }, function(err, responseData) { //this function is executed when a response is received from Twilio
+                  if (!err) { // "err" is an error received during the request, if any
+                      console.log(responseData.from); // outputs "+14506667788"
+                      console.log(responseData.body); // outputs "word to your mother."
+                  }
+                  res.send(responseData);
+              });
+          }
+        });
+      } else {
+        console.log("No hospitals found");
+        res.send("Nothing found");
+      }
+    }
+  });
+});
+
 module.exports = app;
