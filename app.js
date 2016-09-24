@@ -329,14 +329,15 @@ app.get('/callme', function(req, res) {
   twilio.calls.create({
       url: "http://dontpanicyet.herokuapp.com/handlecall",
       to: "+16507993840",
-      from: '+16503004250'
+      from: '+16503004250', 
+      StatusCallbackMethod: "GET"
   }, function(err, call) {
     console.log(err);
     process.stdout.write(call.sid);
   });
 })
 
-app.get('/handlecall', function(req, res) {
+app.post('/handlecall', function(req, res) {
   res.set('Content-Type', 'text/xml');
   res.send(o2x({
     '?xml version="1.0" encoding="utf-8"?' : null,
