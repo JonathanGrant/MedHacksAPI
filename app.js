@@ -252,6 +252,15 @@ app.get('/twiml', function(req, res) {
         }
       });
       break;
+    case 'Fever':
+      res.set('Content-Type', 'text/xml');
+      res.send(o2x({
+          '?xml version="1.0" encoding="utf-8"?' : null,
+          Response: {
+              Sms: 'Fever is usually the side effect of an immune response that presents itself as abnormally high body temperature (above the average range of 98-100 degrees F), commonly accompanied by shivering, headache, and in severe instances, delirium.'
+          }
+      }));
+      break;
   }
 })
 
