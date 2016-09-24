@@ -250,7 +250,7 @@ app.get('/twiml', function(req, res) {
   res.send(o2x({
       '?xml version="1.0" encoding="utf-8"?' : null,
       Response: {
-          Sms: "Ola Jon"
+          Sms: message
       }
   }));
 })
