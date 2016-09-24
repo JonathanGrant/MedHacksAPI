@@ -258,14 +258,12 @@ app.get('/twiml', function(req, res) {
               } else if (body.sickscore >= 26) {
                 myScore = "Low Risk (" + body.sickscore + "%)"
               }
-              messageOne = "Your SickWeather score is " + myScore + "."
-              messageTwo = "There are " + myWords.length + " warnings in your area. They are: " + words + ". Reply the name of the warning you are interested in to get more information dawg."
+              message = "Your SickWeather score is " + myScore + ". The lower the percentage, the less the chance of you getting sick. There are " + myWords.length + " warnings in your area. They are: " + words + ". Reply the name of the warning you are interested in to get more information dawg."
               res.set('Content-Type', 'text/xml');
               res.send(o2x({
                   '?xml version="1.0" encoding="utf-8"?' : null,
                   Response: {
-                      Sms: messageOne,
-                      Sms: messageTwo
+                      Sms: message
                   }
               }));
             }
