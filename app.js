@@ -261,6 +261,46 @@ app.get('/twiml', function(req, res) {
           }
       }));
       break;
+    case 'Hospital':
+    case 'Where is a hospital?':
+    case 'Where is the nearest hospital?':
+      places.search({
+          keyword: "hospital", 
+          location: [loc[0], loc[1]],
+          radius: 49999,
+          opennow: true
+        }, function(err, response) {
+        if (err) {
+          console.error(err);
+          res.send(err);
+        } else {
+          if (response.results.length > 0) {
+            var thePlace = response.results[0];
+            places.details({reference: thePlace.reference}, function(err, response) {
+              if (err) {
+                console.error(err)
+                req.err = 500;
+                res.send(err);
+              } else {
+                req.place = {
+                  name: response.result.name,
+                  map: response.result.url
+                };
+                console.log(response);
+                var address = _.pluck(response.result.address_components, 'long_name').join(", ");
+                var message = "The nearest open hospital is " + response.result.name + " at " + address + ". Good luck! 🔥";
+                res.set('Content-Type', 'text/xml');
+                res.send(o2x({
+                    '?xml version="1.0" encoding="utf-8"?' : null,
+                    Response: {
+                        Sms: message
+                    }
+                }));
+              }
+            });
+          }
+        }
+      });
   }
 })
 
