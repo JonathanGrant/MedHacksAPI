@@ -13,6 +13,7 @@ var _ = require('underscore');
 var request = require("request");
 var twilio = require('twilio')('AC22b9e3d62610aaef92c4bdab5c7b811a', '251943b2b70688e5d59e8509f7427d78');
 var o2x = require('object-to-xml');
+var loc = [39.291571, -76.613619]
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -222,13 +223,35 @@ app.get('/twilioredirect', function(req, res) {
 })
 
 app.get('/twiml', function(req, res) {
+  console.log(req);
+  var message = "Hey! I'm sorry but I did not understand that command. How may I help you?";
+  switch(req.query.body) {
+    case 'How safe am I?':
+      request({
+        url: "https://mobilesvc.sickweather.com/ws/v1.1/getForecast.php?lat=" + loc[0] + "&lon=" + loc[1] + "&api_key=GX3RD5Xx3wJmBSitk9Ee",
+        method: "GET",
+        json: true,
+        headers: {},
+        body: {}
+      }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+          console.log("200: ", body)
+          myWords = []
+          for (i = 0; i < body.words.length; i++) {
+            myWords.push(body.words[i].toUpperCase())
+          }
+          var words = [myWords.slice(0, -1).join(', '), myWords.slice(-1)[0]].join(myWords.length < 2 ? '' : ' and ');
+          message = "Thanks to Sick Weather, you have " + body.words.length + " warnings in your area. They are: " + words + ". Reply the name of the warning you are interested in to get more information dawg."
+        });
+      break;
+  }
   res.set('Content-Type', 'text/xml');
-    res.send(o2x({
-        '?xml version="1.0" encoding="utf-8"?' : null,
-        Response: {
-            Sms: "Ola Jon"
-        }
-    }));
+  res.send(o2x({
+      '?xml version="1.0" encoding="utf-8"?' : null,
+      Response: {
+          Sms: "Ola Jon"
+      }
+  }));
 })
 
 module.exports = app;
