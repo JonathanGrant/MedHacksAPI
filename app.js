@@ -337,16 +337,16 @@ app.get('/callme', function(req, res) {
   });
 })
 
-app.post('/handlecall', function(req, res) {
+app.get('/handlecall', function(req, res) {
   res.set('Content-Type', 'text/xml');
   res.send(o2x({
     '?xml version="1.0" encoding="utf-8"?' : null,
     Response: {
       "Say voice=\"alice\"": "Hello, and welcome to our service. I am Rex, your online virtual assistant.",
       "Gather timeout=\"10\"": {
-        "Say voice=\"alice\"": "Please press one to sign up for our text notification services, or zero to cancel, followed by the pound symbol."
+        "Say  voice=\"alice\"": "Please press one to sign up for our text notification services, or zero to cancel, followed by the pound symbol."
       },
-      "Say voice=\"alice\"": "Thank you! Have a wonderful day.",
+      "Say   voice=\"alice\"": "Thank you! Have a wonderful day.",
       "Redirect method=\"GET\"": "http://dontpanicyet.herokuapp.com/sendfirsttext"
     }
   }));
