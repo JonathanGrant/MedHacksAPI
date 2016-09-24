@@ -249,6 +249,7 @@ app.get('/twiml', function(req, res) {
             body: {}
           }, function (error, response, body) {
             if (!error && response.statusCode === 200) {
+              console.log("200: ", body)
               myScore = "Very Low Risk (" + body.sickscore + "%)"
               if (body.sickscore >= 76) {
                 myScore = "High Risk (" + body.sickscore + "%)"
