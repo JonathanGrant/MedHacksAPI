@@ -258,12 +258,14 @@ app.get('/twiml', function(req, res) {
               } else if (body.sickscore >= 26) {
                 myScore = "Low Risk (" + body.sickscore + "%)"
               }
-              message = "Your SickWeather score is " + myScore + ". There are " + words.length + " warnings in your area. They are: " + words + ". Reply the name of the warning you are interested in to get more information dawg."
+              messageOne = "Your SickWeather score is " + myScore + "."
+              messageTwo = "There are " + myWords.length + " warnings in your area. They are: " + words + ". Reply the name of the warning you are interested in to get more information dawg."
               res.set('Content-Type', 'text/xml');
               res.send(o2x({
                   '?xml version="1.0" encoding="utf-8"?' : null,
                   Response: {
-                      Sms: message
+                      Sms: messageOne,
+                      Sms: messageTwo
                   }
               }));
             }
@@ -282,6 +284,7 @@ app.get('/twiml', function(req, res) {
       break;
     case 'Hospital':
     case 'Where is a hospital?':
+    case 'Where\'s the nearest hospital?':
     case 'Where is the nearest hospital?':
       places.search({
           keyword: "hospital", 
