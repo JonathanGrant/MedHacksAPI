@@ -241,14 +241,32 @@ app.get('/twiml', function(req, res) {
             myWords.push(body.words[i].toUpperCase())
           }
           var words = [myWords.slice(0, -1).join(', '), myWords.slice(-1)[0]].join(myWords.length < 2 ? '' : ' and ');
-          message = "Thanks to Sick Weather, you have " + body.words.length + " warnings in your area. They are: " + words + ". Reply the name of the warning you are interested in to get more information dawg."
-          res.set('Content-Type', 'text/xml');
-          res.send(o2x({
-              '?xml version="1.0" encoding="utf-8"?' : null,
-              Response: {
-                  Sms: message
+          request({
+            url: "https://mobilesvc.sickweather.com/ws/v1.1/getForecast.php?lat=" + loc[0] + "&lon=" + loc[1] + "&api_key=GX3RD5Xx3wJmBSitk9Ee",
+            method: "GET",
+            json: true,
+            headers: {},
+            body: {}
+          }, function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+              myScore = "Very Low Risk (" + body.sickscore + "%)"
+              if (body.sickscore >= 76) {
+                myScore = "High Risk (" + body.sickscore + "%)"
+              } else if (body.sickscore >= 51) {
+                myScore = "Medium Risk (" + body.sickscore + "%)"
+              } else if (body.sickscore >= 26) {
+                myScore = "Low Risk (" + body.sickscore + "%)"
               }
-          }));
+              message = "Your SickWeather score is " + myScore + ". There are " + words.length + " warnings in your area. They are: " + words + ". Reply the name of the warning you are interested in to get more information dawg."
+              res.set('Content-Type', 'text/xml');
+              res.send(o2x({
+                  '?xml version="1.0" encoding="utf-8"?' : null,
+                  Response: {
+                      Sms: message
+                  }
+              }));
+            }
+          });
         }
       });
       break;
