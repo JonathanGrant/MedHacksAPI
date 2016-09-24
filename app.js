@@ -220,8 +220,8 @@ app.get('/twilioredirect', function(req, res) {
   res.send(req);
 })
 
-app.get('/twilm', function(req, res) {
-  res.sendFile(path.join(__dirname + '/myTwimlResponse.xml'));
+app.get('/twiml', function(req, res) {
+  res.sendFile(path.join(__dirname + '/sms-twiml.php'));
 })
 
 module.exports = app;
