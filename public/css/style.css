@@ -657,7 +657,7 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 }
 
 #contact .form-control {
-  background: transparent;
+  background: #d3d3d3;
   border-radius: 0;
   box-shadow: none;
   margin-top: 10px;

@@ -53,6 +53,8 @@ http://www.tooplate.com/view/2078-adventure
 	<!-- Google web font
    ================================================== -->
 	<link href='https://fonts.googleapis.com/css?family=Raleway:700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="css/maps.css">
 	
 </head>
 
@@ -87,9 +89,9 @@ http://www.tooplate.com/view/2078-adventure
 				<!-- <li><a href="#home" class="smoothScroll">HOME</a></li> -->
                 
 				<li><a href="#work" class="smoothScroll">WORK</a></li>
-				<li><a href="#about" class="smoothScroll">ABOUT</a></li>
+				<li><a href="#about" class="smoothScroll">MAPS</a></li>
 				<li><a href="#team" class="smoothScroll">TEAM</a></li>
-				<li><a href="#portfolio" class="smoothScroll">GALLERY</a></li>
+				<li><a href="#portfolio" class="smoothScroll">NEWS</a></li>
 				<li><a href="#plan" class="smoothScroll">PLANS</a></li>
 				<li><a href="#contact" class="smoothScroll">CONTACT</a></li>
 			</ul>
@@ -266,92 +268,237 @@ http://www.tooplate.com/view/2078-adventure
 				</div>
 			</div>
 
-			<div class="col-md-6 col-sm-12">
-				<h3 class="color-white">OUR STORY</h3>
-				<h2>Don't Panic</h2>
-				<p class="color-white">Adventure is free Bootstrap theme by <a rel="nofollow" href="http://www.tooplate.com" target="_parent">tooplate</a>. Download, edit, and use this layout for your website. Feel free to modify or remove anything to meet your desire. Excepteu sunt in culpa qui officia deserunt mollit.</p>
-				<p class="color-white">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteu sunt in culpa qui officia deserunt mollit anim id.</p>
-			</div>
+				<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBsr2Qara311rBhyfKvtT3TSvjycPMPVIw&sensor=false&extension=.js'></script> 
+				 
+				<script> 
+				    google.maps.event.addDomListener(window, 'load', init);
+				    var map;
+				    function init() {
+				        var mapOptions = {
+				            center: new google.maps.LatLng(39.300456,-76.658456),
+				            zoom: 12,
+				            zoomControl: true,
+				            zoomControlOptions: {
+				                style: google.maps.ZoomControlStyle.DEFAULT,
+				            },
+				            disableDoubleClickZoom: true,
+				            mapTypeControl: true,
+				            mapTypeControlOptions: {
+				                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+				            },
+				            scaleControl: true,
+				            scrollwheel: true,
+				            panControl: true,
+				            streetViewControl: true,
+				            draggable : true,
+				            overviewMapControl: true,
+				            overviewMapControlOptions: {
+				                opened: false,
+				            },
+				            mapTypeId: google.maps.MapTypeId.TERRAIN,
+				            styles: [
+				  {
+				    featureType: "road",
+				    elementType: "geometry",
+				    stylers: [
+				      { lightness: 100 },
+				      { visibility: "simplified" }
+				    ]
+				  },{
+				   "featureType": "water",
+				        "elementType": "geometry",
+				        "stylers": [
+				            {
+				                "visibility": "on"
+				            },
+				            {
+				                "color": "#C6E2FF",
+				            }
+				        ]
+				    }, {
+				        "featureType": "poi",
+				        "elementType": "geometry.fill",
+				        "stylers": [
+				            {
+				                "color": "#C5E3BF"
+				            }
+				        ]
+				    },{
+				        "featureType": "road",
+				        "elementType": "geometry.fill",
+				        "stylers": [
+				            {
+				                "color": "#D1D1B8"
+				            }
+				        ]
+				    }
+				],
+				        }
+				        var mapElement = document.getElementById('DontPanic');
+				        var map = new google.maps.Map(mapElement, mapOptions);
+				        var locations = [
 
-			<div class="col-md-6 col-sm-12">
-				<h2 class="mobile-top">WHY CHOOSE US?</h2>
-				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				        ];
+				        for (i = 0; i < locations.length; i++) {
+							if (locations[i][1] =='undefined'){ description ='';} else { description = locations[i][1];}
+							if (locations[i][2] =='undefined'){ telephone ='';} else { telephone = locations[i][2];}
+							if (locations[i][3] =='undefined'){ email ='';} else { email = locations[i][3];}
+				           if (locations[i][4] =='undefined'){ web ='';} else { web = locations[i][4];}
+				           if (locations[i][7] =='undefined'){ markericon ='';} else { markericon = locations[i][7];}
+				            marker = new google.maps.Marker({
+				                icon: markericon,
+				                position: new google.maps.LatLng(locations[i][5], locations[i][6]),
+				                map: map,
+				                title: locations[i][0],
+				                desc: description,
+				                tel: telephone,
+				                email: email,
+				                web: web
+				            });
+				link = '';     }
 
-  					<div class="panel panel-default">
-   						<div class="panel-heading" role="tab" id="headingOne">
-      						<h4 class="panel-title">
-        						<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          							We track and predict epidemics.
-        						</a>
-      						</h4>
-    					</div>
-   						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      						<div class="panel-body">
-        						<p>Phasellus odio lacus, posuere vel sodales a, facilisis vitae ligula. Pellentesque leo ligula, lobortis ut sapien blandit, convallis pulvinar nisi. Proin tempor congue nibh. Nam non maximus metus, nec tincidunt nulla.</p>
-      						</div>
-   						 </div>
- 					 </div>
+				}
+				</script>
+				<style>
+				    #DontPanic {
+				        height:600px;
+				        width:800px;
+				        border: 4px solid #000;
+					    padding: 50px;
+					    position: relative;
+					    text-align: center;
+					    margin-bottom: 92px;
+				    }
+				    .gm-style-iw * {
+				        display: block;
+				        width: 100%;
+				    }
+				    .gm-style-iw h4, .gm-style-iw p {
+				        margin: 0;
+				        padding: 0;
+				    }
+				    .gm-style-iw a {
+				        color: #4272db;
+				    }
+				</style>
 
-    				<div class="panel panel-default">
-   						<div class="panel-heading" role="tab" id="headingTwo">
-      						<h4 class="panel-title">
-        						<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          							High Quality Team
-        						</a>
-      						</h4>
-    					</div>
-   						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-      						<div class="panel-body">
-        						<p>Nullam vehicula tincidunt ultrices. Curabitur id magna velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut pretium tortor ultrices ligula dictum placerat. Donec eget augue sapien. Curabitur vel orci magna. Sed id eros consequat nibh congue euismod.</p>
-      						</div>
-   						 </div>
- 					 </div>
+				<div id='DontPanic'></div>
 
- 					 <div class="panel panel-default">
-   						<div class="panel-heading" role="tab" id="headingThree">
-      						<h4 class="panel-title">
-        						<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-          							Special Awards
-        						</a>
-      						</h4>
-    					</div>
-   						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      						<div class="panel-body">
-        						<p>Morbi pellentesque nisl at sapien congue facilisis. Proin consequat pharetra hendrerit. Aliquam vulputate, ligula ut pellentesque molestie, dolor nisi semper augue, sit amet porta risus sem non sapien. Cras vel pulvinar sapien, in consequat purus. Aliquam at varius augue.</p>
-      						</div>
-   						 </div>
- 					 </div>
+		</div>
+	</div>
+</section>
 
- 				 </div>
-			</div>
 
-			<div class="col-md-3 col-sm-3 col-xs-6">
-				<div class="about-fact border-right">
-					<span>6</span>
-					<h4>BRAINS</h4>
+<!-- News section
+================================================== -->
+<section id="portfolio" class="parallax-section">
+	<div class="container">
+		<div class="row">
+
+			<!-- Section title
+			================================================== -->
+			<div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+				<div class="section-title">
+					<h5 class="wow bounceIn"></h5>
+					<h1 class="heading">NEWS</h1>
+					<hr>
+					<p>Current epidemioliogy news pieces from around the world.</p>
 				</div>
 			</div>
 
-			<div class="col-md-3 col-sm-3 col-xs-6">
-				<div class="about-fact border-right">
-					<span>36</span>
-					<h4>HOURS</h4>
+            <div class="col-md-4 col-sm-6">
+				<div class="grid">
+              		<figure class="effect-zoe">
+						<img src="images/portfolio-img1.jpg" alt="portfolio img"/>
+							<figcaption>
+								<h2>Zika: Singapore</h2>
+								<p class="icon-links">
+									<a href="http://wwwnc.cdc.gov/travel/notices/alert/zika-virus-singapore"><span class="icon icon-attachment"></span></a>
+								</p>
+							</figcaption>			
+					</figure>
 				</div>
-			</div>
+            </div>   
 
-			<div class="col-md-3 col-sm-3 col-xs-6">
-				<div class="about-fact border-right">
-					<span>50</span>
-					<h4>CUPS OF COFFEE</h4>
+            <div class="col-md-4 col-sm-6">
+				<div class="grid">
+              		<figure class="effect-zoe">
+						<img src="images/portfolio-img2.jpg" alt="portfolio img"/>
+							<figcaption>
+								<h2>Yellow Fever Initiative</h2>
+								<p class="icon-links">
+									<a href="http://www.who.int/csr/disease/yellowfev/eye-strategy/en/"><span class="icon icon-attachment"></span></a>
+								</p>
+							</figcaption>			
+					</figure>
 				</div>
-			</div>
+            </div> 
 
-			<div class="col-md-3 col-sm-3 col-xs-6">
-				<div class="about-fact">
-					<span>6</span>
-					<h4>STATES</h4>
+            <div class="col-md-4 col-sm-6">
+				<div class="grid">
+              		<figure class="effect-zoe">
+						<img src="images/portfolio-img3.jpg" alt="portfolio img"/>
+							<figcaption>
+								<h2>Zika: Bahamas</h2>
+								<p class="icon-links">
+									<a href="http://wwwnc.cdc.gov/travel/notices/alert/zika-virus-the-bahamas"><span class="icon icon-attachment"></span></a>
+								</p>
+							</figcaption>			
+					</figure>
 				</div>
-			</div>
+            </div> 
+          	
+          	<div class="col-md-4 col-sm-6">
+				<div class="grid">
+              		<figure class="effect-zoe">
+						<img src="images/portfolio-img4.jpg" alt="portfolio img"/>
+							<figcaption>
+								<h2>Foodbourne Outbreaks in US</h2>
+								<p class="icon-links">
+									<a href="http://www.cdc.gov/foodsafety/outbreaks/multistate-outbreaks/outbreaks-list.html"><span class="icon icon-attachment"></span></a>
+								</p>
+							</figcaption>			
+					</figure>
+				</div>
+            </div> 
+
+            <div class="col-md-4 col-sm-6">
+				<div class="grid">
+              		<figure class="effect-zoe">
+						<img src="images/portfolio-img5.jpg" alt="portfolio img"/>
+							<figcaption>
+								<h2>Cholera: DR Congo</h2>
+								<p class="icon-links">
+									<a href="http://www.afro.who.int/en/clusters-a-programmes/dpc/epidemic-a-pandemic-alert-and-response/outbreak-news/5005-outbreaks-and-emergencies-in-the-who-african-region-bulletin-vol-6-issue-4-30-june-2016.html"><span class="icon icon-attachment"></span></a>
+								</p>
+							</figcaption>			
+					</figure>
+				</div>
+            </div> 
+
+            <div class="col-md-4 col-sm-6">
+				<div class="grid">
+              		<figure class="effect-zoe">
+						<img src="images/portfolio-img6.jpg" alt="portfolio img"/>
+							<figcaption>
+								<h2>Avian Flu in China</h2>
+								<p class="icon-links">
+									<a href="http://www.who.int/csr/don/17-august-2016-ah7n9-china/en/" ><span class="icon icon-attachment"></span></a>
+								</p>
+							</figcaption>			
+					</figure>
+				</div>
+            </div> 
+
+            <!-- Portfolio bottom section
+			================================================== -->
+            <div class="col-md-offset-2 col-md-8 col-sm-12">
+            	<div class="portfolio-bottom">
+            		<h2>INTERESTED?</h2>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. Lorem ipsum dolor sit 	amet.</p>
+					<a href="#plan" class="smoothScroll btn btn-default">LET'S GO!</a>
+            	</div>
+            </div>    
 
 		</div>
 	</div>
@@ -470,198 +617,6 @@ http://www.tooplate.com/view/2078-adventure
 						</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</section>
-
-
-<!-- Portfolio section
-================================================== -->
-<section id="portfolio" class="parallax-section">
-	<div class="container">
-		<div class="row">
-
-			<!-- Section title
-			================================================== -->
-			<div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
-				<div class="section-title">
-					<h5 class="wow bounceIn">WE ARE DELIGENT</h5>
-					<h1 class="heading">SHOWCASE</h1>
-					<hr>
-					<p>Pellentesque mollis purus ipsum. Fusce tristique ante et est placerat dignissim. Curabitur tincidunt risus non dui vulputate tincidunt.</p>
-				</div>
-			</div>
-
-            <div class="col-md-4 col-sm-6">
-				<div class="grid">
-              		<figure class="effect-zoe">
-						<img src="images/portfolio-img1.jpg" alt="portfolio img"/>
-							<figcaption>
-								<h2>Mobile App</h2>
-								<p class="icon-links">
-									<a href="images/portfolio-img1.jpg" data-lightbox-gallery="portfolio-gallery"><span class="icon icon-attachment"></span></a>
-								</p>
-							</figcaption>			
-					</figure>
-				</div>
-            </div>   
-
-            <div class="col-md-4 col-sm-6">
-				<div class="grid">
-              		<figure class="effect-zoe">
-						<img src="images/portfolio-img2.jpg" alt="portfolio img"/>
-							<figcaption>
-								<h2>Trip Planning</h2>
-								<p class="icon-links">
-									<a href="images/portfolio-img2.jpg" data-lightbox-gallery="portfolio-gallery"><span class="icon icon-attachment"></span></a>
-								</p>
-							</figcaption>			
-					</figure>
-				</div>
-            </div> 
-
-            <div class="col-md-4 col-sm-6">
-				<div class="grid">
-              		<figure class="effect-zoe">
-						<img src="images/portfolio-img3.jpg" alt="portfolio img"/>
-							<figcaption>
-								<h2>Scheduling</h2>
-								<p class="icon-links">
-									<a href="images/portfolio-img3.jpg" data-lightbox-gallery="portfolio-gallery"><span class="icon icon-attachment"></span></a>
-								</p>
-							</figcaption>			
-					</figure>
-				</div>
-            </div> 
-          	
-          	<div class="col-md-4 col-sm-6">
-				<div class="grid">
-              		<figure class="effect-zoe">
-						<img src="images/portfolio-img4.jpg" alt="portfolio img"/>
-							<figcaption>
-								<h2>Arranging</h2>
-								<p class="icon-links">
-									<a href="images/portfolio-img4.jpg" data-lightbox-gallery="portfolio-gallery"><span class="icon icon-attachment"></span></a>
-								</p>
-							</figcaption>			
-					</figure>
-				</div>
-            </div> 
-
-            <div class="col-md-4 col-sm-6">
-				<div class="grid">
-              		<figure class="effect-zoe">
-						<img src="images/portfolio-img5.jpg" alt="portfolio img"/>
-							<figcaption>
-								<h2>Organizing</h2>
-								<p class="icon-links">
-									<a href="images/portfolio-img5.jpg" data-lightbox-gallery="portfolio-gallery"><span class="icon icon-attachment"></span></a>
-								</p>
-							</figcaption>			
-					</figure>
-				</div>
-            </div> 
-
-            <div class="col-md-4 col-sm-6">
-				<div class="grid">
-              		<figure class="effect-zoe">
-						<img src="images/portfolio-img6.jpg" alt="portfolio img"/>
-							<figcaption>
-								<h2>Grouping</h2>
-								<p class="icon-links">
-									<a href="images/portfolio-img6.jpg" data-lightbox-gallery="portfolio-gallery"><span class="icon icon-attachment"></span></a>
-								</p>
-							</figcaption>			
-					</figure>
-				</div>
-            </div> 
-
-            <!-- Portfolio bottom section
-			================================================== -->
-            <div class="col-md-offset-2 col-md-8 col-sm-12">
-            	<div class="portfolio-bottom">
-            		<h2>INTERESTED?</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. Lorem ipsum dolor sit 	amet.</p>
-					<a href="#plan" class="smoothScroll btn btn-default">LET'S GO!</a>
-            	</div>
-            </div>    
-
-		</div>
-	</div>
-</section>		
-
-
-<!-- Plan section
-================================================== -->
-<section id="plan" class="parallax-section">
-	<div class="container">
-		<div class="row">
-
-			<!-- Section title
-			================================================== -->
-			<div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 wow fadeInUp">
-				<div class="section-title">
-					<h5 class="wow bounceIn">UNIQUE ADVENTURES</h5>
-					<h1 class="heading color-white">TRIP PLANS</h1>
-					<hr>
-					<p class="color-white">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteu sunt in culpa qui officia deserunt.</p>
-				</div>
-			</div>
-
-			<div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-				<div class="plan">
-					<h2 class="plan-title">Villager</h2>
-					<div class="plan-price">
-						<h1 class="plan-price-title">$500 / <small>trip</small></h1>
-					</div>
-					<ul class="plan-list">
-						<li>4 days 3 nights</li>
-						<li>Explore Forest</li>
-						<li>Visit Waterfalls</li>
-						<li>Group of 10 people</li>
-					</ul>
-					<div class="plan-button">
-						<button class="btn btn-default">CHOOSE PLAN</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
-				<div class="plan">
-					<h2 class="plan-title">Tourer</h2>
-					<div class="plan-price">
-						<h1 class="plan-price-title">$800 / <small>trip</small></h1>
-					</div>
-					<ul class="plan-list">
-						<li>8 days 7 nights</li>
-						<li>Explore Mountains</li>
-						<li>Touring Villages</li>
-						<li>Group of 15 people</li>
-					</ul>
-					<div class="plan-button">
-						<button class="btn btn-default">CHOOSE PLAN</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
-				<div class="plan">
-					<h2 class="plan-title">Explorer</h2>
-					<div class="plan-price">
-						<h1 class="plan-price-title">$1,400 / <small>trip</small></h1>
-					</div>
-					<ul class="plan-list">
-						<li>12 days 11 nights</li>
-						<li>Multiple Cities</li>
-						<li>Unique Experiences</li>
-						<li>Group of 20 people</li>
-					</ul>
-					<div class="plan-button">
-						<button class="btn btn-default">CHOOSE PLAN</button>
-					</div>
-				</div>
-			</div>
-
 		</div>
 	</div>
 </section>
