@@ -15,7 +15,9 @@
     "morgan": "~1.6.1",
     "request": "^2.75.0",
     "serve-favicon": "~2.3.0",
+    "mongoose": "^3.8.23",
     "twilio": "^2.11.0",
     "underscore": "^1.8.3"
   }
+
 }

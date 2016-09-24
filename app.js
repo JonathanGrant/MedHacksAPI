@@ -98,32 +98,34 @@ app.get('/places', function(req, res) {
   });
 });
 
-app.get('/sickweather', function(req, res) {
-  request({
-    url: "https://mobilesvc.sickweather.com/ws/v1.1/getForecast.php?lat=" + req.query.lat + "&lon=" + req.query.lon + "&api_key=GX3RD5Xx3wJmBSitk9Ee",
-    method: "GET",
-    json: true,
-    headers: {
-    },
-    body: {}
-  }, function (error, response, body) {
-    if (!error && response.statusCode === 200) {
-      console.log("200: ", body)
-    }
-    else {
-      console.log("error: " + error)
-      console.log("response.statusCode: " + response.statusCode)
-      console.log("response.statusText: " + response.statusText)
-    }
-    res.send(body);
-  });
-});
-
+//app.get('/sickweather', function(req, res) {
+//  request({
+//    url: "https://mobilesvc.sickweather.com/ws/v1.1/getForecast.php?lat=" + req.query.lat + "&lon=" + req.query.lon + "&api_key=GX3RD5Xx3wJmBSitk9Ee",
+//    method: "GET",
+//    json: true,
+//    headers: {
+//    },
+//    body: {}
+//  }, function (error, response, body) {
+//    if (!error && response.statusCode === 200) {
+//      console.log("200: ", body)
+//    }
+//    else {
+//      console.log("error: " + error)
+//      console.log("response.statusCode: " + response.statusCode)
+//      console.log("response.statusText: " + response.statusText)
+//    }
+//    res.send(body);
+//  });
+//});
+  var accountSid = 'AC22d073b50fa47770162880e8458aeb34';
+  var authToken = 'c4844470f51c944d5b0ac4c1894e56fe';
+  var client = require('twilio')(accountSid, authToken);
 app.get('/twiliotest', function(req, res) {
   twilio.sendMessage({
     to: "+16507993840",
-    from: '+16503004250',
-    body: "Ola twilio!",
+    from: '+16692228802',
+    body: "Message test",
     }, function(err, responseData) { //this function is executed when a response is received from Twilio
         if (!err) { // "err" is an error received during the request, if any
             console.log(responseData.from); // outputs "+14506667788"
@@ -131,89 +133,132 @@ app.get('/twiliotest', function(req, res) {
         }
     });
 });
+//
+//app.get('/getinfotext', function(req, res) {
+//  request({
+//    url: "https://mobilesvc.sickweather.com/ws/v1.1/getForecast.php?lat=" + req.query.lat + "&lon=" + req.query.lon + "&api_key=GX3RD5Xx3wJmBSitk9Ee",
+//    method: "GET",
+//    json: true,
+//    headers: {},
+//    body: {}
+//  }, function (error, response, body) {
+//    if (!error && response.statusCode === 200) {
+//      console.log("200: ", body)
+//      myWords = []
+//      for (i = 0; i < body.words.length; i++) {
+//        myWords.push(body.words[i].toUpperCase())
+//      }
+//      var words = [myWords.slice(0, -1).join(', '), myWords.slice(-1)[0]].join(myWords.length < 2 ? '' : ' and ');
+//      var message = "Thanks to Sick Weather, you have " + body.words.length + " warnings in your area. They are: " + words + ". Reply the name of the warning you are interested in to get more information dawg."
+//      twilio.sendMessage({
+//        to: "+16507993840",
+//        from: '+16503004250',
+//        body: message,
+//        }, function(err, responseData) { //this function is executed when a response is received from Twilio
+//            if (!err) { // "err" is an error received during the request, if any
+//                console.log(responseData.from); // outputs "+14506667788"
+//                console.log(responseData.body); // outputs "word to your mother."
+//            }
+//            res.send(responseData);
+//        });
+//    }
+//    else {
+//      console.log("error: " + error)
+//      console.log("response.statusCode: " + response.statusCode)
+//      console.log("response.statusText: " + response.statusText)
+//    }
+//  });
+//})
+//
+//app.get('/gethospitaltext', function(req, res) {
+//  places.search({
+//      keyword: "hospital",
+//      location: [req.query.lat, req.query.lon],
+//      radius: 49999,
+//      opennow: true
+//    }, function(err, response) {
+//    if (err) {
+//      console.error(err);
+//      res.send(err);
+//    } else {
+//      if (response.results.length > 0) {
+//        var thePlace = response.results[0];
+//        places.details({reference: thePlace.reference}, function(err, response) {
+//          if (err) {
+//            console.error(err)
+//            req.err = 500;
+//            next();
+//          } else {
+//            req.place = {
+//              name: response.result.name,
+//              map: response.result.url
+//            };
+//            console.log(response);
+//            var address = _.pluck(response.result.address_components, 'long_name').join(", ");
+//            var message = "The nearest open hospital is " + response.result.name + " at " + address + ". Good luck! 🔥";
+//            twilio.sendMessage({
+//              to: "+16507993840",
+//              from: '+16503004250',
+//              body: message,
+//              }, function(err, responseData) { //this function is executed when a response is received from Twilio
+//                  if (!err) { // "err" is an error received during the request, if any
+//                      console.log(responseData.from); // outputs "+14506667788"
+//                      console.log(responseData.body); // outputs "word to your mother."
+//                  }
+//                  res.send(responseData);
+//              });
+//          }
+//        });
+//      } else {
+//        console.log("No hospitals found");
+//        res.send("Nothing found");
+//      }
+//    }
+//  });
+//});
 
-app.get('/getinfotext', function(req, res) {
-  request({
-    url: "https://mobilesvc.sickweather.com/ws/v1.1/getForecast.php?lat=" + req.query.lat + "&lon=" + req.query.lon + "&api_key=GX3RD5Xx3wJmBSitk9Ee",
-    method: "GET",
-    json: true,
-    headers: {},
-    body: {}
-  }, function (error, response, body) {
-    if (!error && response.statusCode === 200) {
-      console.log("200: ", body)
-      myWords = []
-      for (i = 0; i < body.words.length; i++) {
-        myWords.push(body.words[i].toUpperCase())
-      }
-      var words = [myWords.slice(0, -1).join(', '), myWords.slice(-1)[0]].join(myWords.length < 2 ? '' : ' and ');
-      var message = "Thanks to Sick Weather, you have " + body.words.length + " warnings in your area. They are: " + words + ". Reply the name of the warning you are interested in to get more information dawg."
-      twilio.sendMessage({
-        to: "+16507993840",
-        from: '+16503004250',
-        body: message,
-        }, function(err, responseData) { //this function is executed when a response is received from Twilio
-            if (!err) { // "err" is an error received during the request, if any
-                console.log(responseData.from); // outputs "+14506667788"
-                console.log(responseData.body); // outputs "word to your mother."
-            }
-            res.send(responseData);
-        });
-    }
-    else {
-      console.log("error: " + error)
-      console.log("response.statusCode: " + response.statusCode)
-      console.log("response.statusText: " + response.statusText)
-    }
-  });
-})
 
-app.get('/gethospitaltext', function(req, res) {
-  places.search({
-      keyword: "hospital", 
-      location: [req.query.lat, req.query.lon],
-      radius: 49999,
-      opennow: true
-    }, function(err, response) {
-    if (err) {
-      console.error(err);
-      res.send(err);
-    } else {
-      if (response.results.length > 0) {
-        var thePlace = response.results[0];
-        places.details({reference: thePlace.reference}, function(err, response) {
-          if (err) {
-            console.error(err)
-            req.err = 500;
-            next();
-          } else {
-            req.place = {
-              name: response.result.name,
-              map: response.result.url
-            };
-            console.log(response);
-            var address = _.pluck(response.result.address_components, 'long_name').join(", ");
-            var message = "The nearest open hospital is " + response.result.name + " at " + address + ". Good luck! 🔥";
-            twilio.sendMessage({
-              to: "+16507993840",
-              from: '+16503004250',
-              body: message,
-              }, function(err, responseData) { //this function is executed when a response is received from Twilio
-                  if (!err) { // "err" is an error received during the request, if any
-                      console.log(responseData.from); // outputs "+14506667788"
-                      console.log(responseData.body); // outputs "word to your mother."
-                  }
-                  res.send(responseData);
-              });
-          }
-        });
-      } else {
-        console.log("No hospitals found");
-        res.send("Nothing found");
-      }
-    }
-  });
-});
+
+//app.get('/twiliotest', function(req, res) {
+//  twilio.sendMessage({
+//    to: "+16507993840",
+//    from: '+16503004250',
+//    body: "Ola twilio!",
+//    }, function(err, responseData) { //this function is executed when a response is received from Twilio
+//        if (!err) { // "err" is an error received during the request, if any
+//            console.log(responseData.from); // outputs "+14506667788"
+//            console.log(responseData.body); // outputs "word to your mother."
+//        }
+//    });
+//});
+
+//app. get('\twilloCall', function(req, res) {
+//  var accountSid = 'AC22d073b50fa47770162880e8458aeb34';
+//  var authToken = "c4844470f51c944d5b0ac4c1894e56fe";
+//  //var client = require('twilio')(accountSid, authToken);
+//
+//  //client.calls.create({
+//  //  url: "http://demo.twilio.com/docs/voice.xml",
+//  //  to: "+12088419120",
+//  //  from: "+16692228802"
+//  //}, function(err, responseData) {
+//  //  if (!err) {
+//  //    console.log(responseData.from); // outputs "+14506667788"
+//  //    console.log(responseData.body); // outputs "word to your mother."
+//  //  }
+//  //});;   // Your Auth Token from www.twilio.com/console
+//
+//  var twilio = require('twilio');
+//  var client = new twilio.RestClient(accountSid, authToken);
+//
+//  client.messages.create({
+//    body: 'Hello from Node',
+//    to: "+12088419120",
+//    from: "+16692228802"
+//  }, function(err, message) {
+//    console.log(message.sid);
+//  });
+//});
 
 app.get('/twilioredirect', function(req, res) {
   console.log(req);
