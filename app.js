@@ -142,7 +142,11 @@ app.get('/getinfotext', function(req, res) {
   }, function (error, response, body) {
     if (!error && response.statusCode === 200) {
       console.log("200: ", body)
-      var words = [body.words.slice(0, -1).join(', '), body.words.slice(-1)[0]].join(body.words.length < 2 ? '' : ' and ');
+      myWords = []
+      for (i = 0; i < body.words.length; i++) {
+        myWords.push(body.words[i].toUpperCase())
+      }
+      var words = [myWords.slice(0, -1).join(', '), myWords.slice(-1)[0]].join(myWords.length < 2 ? '' : ' and ');
       var message = "Thanks to Sick Weather, you have " + body.words.length + " warnings in your area. They are: " + words + ". Reply the name of the warning you are interested in to get more information dawg."
       twilio.sendMessage({
         to: "+16507993840",
