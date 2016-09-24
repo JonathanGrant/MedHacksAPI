@@ -10,6 +10,7 @@ var app = express();
 var GooglePlaces = require('google-places');
 var places = new GooglePlaces('AIzaSyAP8KGW9N3KPxDiPhqPWC0WAC2-BUwK64M');
 var _ = require('underscore');
+var request = require("request");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -94,7 +95,27 @@ app.get('/hospitalnearme', function(req, res) {
       }
     }
   });
+});
 
+app.get('/sickweather', function(req, res) {
+  request({
+    url: "https://mobilesvc.sickweather.com/ws/v1.1/getForecast.php?lat=" + req.query.lat + "&lon=" + req.query.lon + "&api_key=GX3RD5Xx3wJmBSitk9Ee",
+    method: "GET",
+    json: true,
+    headers: {
+    },
+    body: {}
+  }, function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+      console.log("200: ", body)
+    }
+    else {
+      console.log("error: " + error)
+      console.log("response.statusCode: " + response.statusCode)
+      console.log("response.statusText: " + response.statusText)
+    }
+    res.send(body);
+  });
 });
 
 module.exports = app;
