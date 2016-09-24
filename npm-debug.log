@@ -1,0 +1,81 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/0.12.5/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'owner',
+1 verbose cli   'ls',
+1 verbose cli   'MedHacksAPI' ]
+2 info using npm@3.10.3
+3 info using node@v6.4.0
+4 silly mapToRegistry name MedHacksAPI
+5 silly mapToRegistry using default registry
+6 silly mapToRegistry registry https://registry.npmjs.org/
+7 silly mapToRegistry data Result {
+7 silly mapToRegistry   raw: 'MedHacksAPI',
+7 silly mapToRegistry   scope: null,
+7 silly mapToRegistry   escapedName: 'MedHacksAPI',
+7 silly mapToRegistry   name: 'MedHacksAPI',
+7 silly mapToRegistry   rawSpec: '',
+7 silly mapToRegistry   spec: 'latest',
+7 silly mapToRegistry   type: 'tag' }
+8 silly mapToRegistry uri https://registry.npmjs.org/MedHacksAPI
+9 verbose request uri https://registry.npmjs.org/MedHacksAPI
+10 verbose request no auth needed
+11 info attempt registry request try #1 at 1:27:59 AM
+12 verbose request id 3cc3128f7f6752a6
+13 http request GET https://registry.npmjs.org/MedHacksAPI
+14 http 404 https://registry.npmjs.org/MedHacksAPI
+15 verbose headers { 'content-type': 'application/json',
+15 verbose headers   'cache-control': 'max-age=0',
+15 verbose headers   'content-length': '2',
+15 verbose headers   'accept-ranges': 'bytes',
+15 verbose headers   date: 'Sat, 24 Sep 2016 08:28:04 GMT',
+15 verbose headers   via: '1.1 varnish',
+15 verbose headers   age: '0',
+15 verbose headers   connection: 'keep-alive',
+15 verbose headers   'x-served-by': 'cache-iad2636-IAD',
+15 verbose headers   'x-cache': 'MISS',
+15 verbose headers   'x-cache-hits': '0',
+15 verbose headers   'x-timer': 'S1474705684.416487,VS0,VE60',
+15 verbose headers   vary: 'Accept-Encoding' }
+16 silly get cb [ 404,
+16 silly get   { 'content-type': 'application/json',
+16 silly get     'cache-control': 'max-age=0',
+16 silly get     'content-length': '2',
+16 silly get     'accept-ranges': 'bytes',
+16 silly get     date: 'Sat, 24 Sep 2016 08:28:04 GMT',
+16 silly get     via: '1.1 varnish',
+16 silly get     age: '0',
+16 silly get     connection: 'keep-alive',
+16 silly get     'x-served-by': 'cache-iad2636-IAD',
+16 silly get     'x-cache': 'MISS',
+16 silly get     'x-cache-hits': '0',
+16 silly get     'x-timer': 'S1474705684.416487,VS0,VE60',
+16 silly get     vary: 'Accept-Encoding' } ]
+17 error owner ls Couldn't get owner data MedHacksAPI
+18 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/MedHacksAPI
+18 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+18 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:242:14)
+18 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+18 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:200:22)
+18 verbose stack     at emitTwo (events.js:106:13)
+18 verbose stack     at Request.emit (events.js:191:7)
+18 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1067:10)
+18 verbose stack     at emitOne (events.js:101:20)
+18 verbose stack     at Request.emit (events.js:188:7)
+18 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:988:12)
+19 verbose statusCode 404
+20 verbose pkgid MedHacksAPI
+21 verbose cwd /Users/jonathangrant/hack/MedHacksAPI
+22 error Darwin 15.6.0
+23 error argv "/usr/local/Cellar/node/0.12.5/bin/node" "/usr/local/bin/npm" "owner" "ls" "MedHacksAPI"
+24 error node v6.4.0
+25 error npm  v3.10.3
+26 error code E404
+27 error 404 Registry returned 404 for GET on https://registry.npmjs.org/MedHacksAPI
+28 error 404
+29 error 404 'MedHacksAPI' is not in the npm registry.
+30 error 404 Your package name is not valid, because
+31 error 404 1. name can no longer contain capital letters
+32 error 404 Note that you can also install from a
+33 error 404 tarball, folder, http url, or git url.
+34 verbose exit [ 1, true ]
