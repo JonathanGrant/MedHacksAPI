@@ -338,7 +338,7 @@ app.get('/callme', function(req, res) {
   });
 })
 
-app.get('/handlecall', function(req, res) {
+app.post('/handlecall', function(req, res) {
   res.set('Content-Type', 'text/xml');
   res.send(o2x({
     '?xml version="1.0" encoding="utf-8"?' : null,
