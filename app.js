@@ -242,7 +242,8 @@ app.get('/twiml', function(req, res) {
           }
           var words = [myWords.slice(0, -1).join(', '), myWords.slice(-1)[0]].join(myWords.length < 2 ? '' : ' and ');
           message = "Thanks to Sick Weather, you have " + body.words.length + " warnings in your area. They are: " + words + ". Reply the name of the warning you are interested in to get more information dawg."
-        });
+        }
+      });
       break;
   }
   res.set('Content-Type', 'text/xml');
