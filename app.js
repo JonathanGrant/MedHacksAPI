@@ -376,4 +376,8 @@ app.get('/otherInfo', function(req, res)
   res.sendFile(path.join(__dirname + '/public/otherInfo.html'));
 })
 
+app.get('/goHome', function(req, res)
+{
+  res.sendFile(path.join(__dirname + '/public/index.html'));
+})
 module.exports = app;
