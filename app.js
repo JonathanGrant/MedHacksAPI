@@ -373,7 +373,7 @@ app.get('/submitReport', function(req, res)
 
 app.get('/otherInfo', function(req, res)
 {
-  res.sendFile(path.join(__dirname + '/public/otherInfoPage/otherInfo.html'));
+  res.sendFile(path.join(__dirname + '/public/otherInfo.html'));
 })
 
 module.exports = app;
