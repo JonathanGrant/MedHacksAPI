@@ -449,7 +449,7 @@ hr {
 /* about section styles
 /* ========================================== */
 #about {
-  background: url('../images/about-bg.jpg') 50% 0 repeat-y fixed;
+  background: url('../images/res_background.jpg') 50% 0 repeat-y fixed;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center;
