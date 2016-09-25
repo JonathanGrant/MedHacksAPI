@@ -357,7 +357,7 @@ app.get('/sendfirsttext', function(req, res) {
   twilio.sendMessage({
     to: "+16507993840",
     from: '+16503004250',
-    body: "Hey, this is Rex, destroyer of worlds. Thank you for signing up!",
+    body: "Hey, this is Rex, destroyer of worlds. Thank you for signing up! Text this number for information +16503004250",
     }, function(err, responseData) { //this function is executed when a response is received from Twilio
         if (!err) { // "err" is an error received during the request, if any
             console.log(responseData.from); // outputs "+14506667788"
