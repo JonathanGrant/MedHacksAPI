@@ -366,8 +366,14 @@ app.get('/sendfirsttext', function(req, res) {
     });
 })
 
-app.get('/submitReport', function(req, res) {
+app.get('/submitReport', function(req, res)
+{
   res.sendFile(path.join(__dirname + '/public/submitReport.html'));
+})
+
+app.get('/otherInfo', function(req, res)
+{
+  res.sendFile(path.join(__dirname + '/public/otherInfoPage/otherInfo.html'));
 })
 
 module.exports = app;
